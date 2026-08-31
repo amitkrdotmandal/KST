@@ -1,0 +1,15 @@
+a) "combined_dry_weight_DB" ->
+1.data_analysis
+2.Dyeing_order_planning_after_stock_calculation_new
+3.RM_data
+
+b)"Dyeing_capacity_DB"      -> 
+1.Dyeing_lead_time_order_vs_despatch_report
+
+c)""4 August -Expanded capacity calculation_DB""  ->
+1. Winding_lead_time_pending_vs_stock
+
+
+d)"party_list_DB"  ->
+1. challan k liye
+                       

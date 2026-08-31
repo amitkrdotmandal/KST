@@ -1,0 +1,14 @@
+Update daily:
+1. "ProductionPlanning"   > to see stock of dyed finished cones
+2."rptstapprovalpending"  >> to see stock of dyed soft packages before winding
+3."jobcard_pkg_streaching"
+4."jobcard_pkg_winding"
+
+
+
+
+download 
+1."ProductionPlanning.xlsx" from -> "livewire pdms site"->"Sale And Order"-> "Pending Order vs Stock Report"
+
+2."rptstapprovalpending.XLS" from ->"winding pdms software" ->"transaction" -> "yarn dyeing management" -> "dyeing_production_approval" -> search date April to today -> "search" -> "pending"
+

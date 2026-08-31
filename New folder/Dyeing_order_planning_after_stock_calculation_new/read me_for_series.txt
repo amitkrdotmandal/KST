@@ -1,0 +1,23 @@
+Update daily:
+1. "ProductionPlanning"   >> to see stock of dyed finished cones
+2."rptstapprovalpending"  >> to see stock of dyed soft packages before winding and streaching
+3."jobcard_pkg_stretching" >> to see stock of dyed soft packages in winding
+4."jobcard_pkg_winding" >> to see stock of dyed soft packages in streaching
+5."ordertodspsummary" >> to cones in dyeing
+6."input_series_article_shade_qty.xlsx">>> as series input of "Article","Shade", "Qty" and "Already_punched_or_not"
+
+
+DB files:
+1."combined_dry_weight_DB.xlsx"
+2."To_convert_after_dyeing_ITEM_NAME_to_match_our_ITEM_NAME/OUTPUT_converted_item_name_of_dyed_soft_pkg_DB.xlsx"
+
+
+
+download:
+1.(1)"ProductionPlanning.xlsx" from -> "livewire pdms site"->"Sale And Order"-> "Pending Order vs Stock Report"
+2.(3)"rptstapprovalpending.XLS","jobcard_pkg_stretching.XLS" and "jobcard_pkg_winding.XLS" from ->
+     "winding pdms software" ->"transaction" -> "yarn dyeing management" -> "dyeing_production_approval" -> 
+	search date April to today -> "search" -> "pending", "Streaching" and "winding"
+3.(1)"ordertodspsummary" form  -> "yarn dyeing PDMS software"->unit selection"yarn division palsana"->
+	"Reports"->"Yarn Dyeing Report"->"Order to despatch history"-> Unit Name "YARN DIVISOIN (PALSANA)"->
+	Division"PALSANA"-> Dont change date->report format"SUMMERY"-> Party name F2 "KIRAN INDUSTRIES PVT LTD (STICH DIV SALES)"
