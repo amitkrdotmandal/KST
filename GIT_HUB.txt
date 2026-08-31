@@ -1,3 +1,5 @@
+git credential-manager github logout
+
 cd "D:\ooffice KST"
 
 rmdir /s /q .git
