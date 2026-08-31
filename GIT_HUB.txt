@@ -1,4 +1,4 @@
-git credential-manager github logout
+git credential-manager github logout amitkrdotmandal
 
 cd "D:\ooffice KST"
 
