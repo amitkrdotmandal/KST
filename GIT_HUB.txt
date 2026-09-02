@@ -1,26 +1,30 @@
 git credential-manager github logout amitkrdotmandal
 
+
+
+#### FOR PUSH 
 cd "D:\ooffice KST"
+git add .
+git commit -m "Update project"
+git push origin main
 
+
+#### FOR pull  
+git pull origin main
+
+
+#### FOR PUSH  first time
+cd "D:\ooffice KST"
 rmdir /s /q .git
-
 git init
 git branch -M main
-
 git remote add origin https://github.com/amitkrdotmandal/KST.git
-
 git add .
 git commit -m "Initial commit"
-
 git push -u origin main --force
 
 
 
-
-
-
-cd "D:\ooffice KST"
-
-git add .
-git commit -m "Update project"
-git push origin main
+#### FOR pull  first time
+git clone https://github.com/amitkrdotmandal/KST.git
+git pull origin main

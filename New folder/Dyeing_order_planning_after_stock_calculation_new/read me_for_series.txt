@@ -1,10 +1,18 @@
-Update daily:
+Update daily(input_files):
 1. "ProductionPlanning"   >> to see stock of dyed finished cones
 2."rptstapprovalpending"  >> to see stock of dyed soft packages before winding and streaching
 3."jobcard_pkg_stretching" >> to see stock of dyed soft packages in winding
 4."jobcard_pkg_winding" >> to see stock of dyed soft packages in streaching
 5."ordertodspsummary" >> to cones in dyeing
 6."input_series_article_shade_qty.xlsx">>> as series input of "Article","Shade", "Qty" and "Already_punched_or_not"
+
+
+Running Sequence:
+1. "order_planning_calculation_upgrade_Upgrade_CALLING_func_for_of_input_series"
+
+Out_Put (Output_files):
+1.OUTPUT_input_series_article_shade_qty_Upgraded
+
 
 
 DB files:
@@ -21,3 +29,8 @@ download:
 3.(1)"ordertodspsummary" form  -> "yarn dyeing PDMS software"->unit selection"yarn division palsana"->
 	"Reports"->"Yarn Dyeing Report"->"Order to despatch history"-> Unit Name "YARN DIVISOIN (PALSANA)"->
 	Division"PALSANA"-> Dont change date->report format"SUMMERY"-> Party name F2 "KIRAN INDUSTRIES PVT LTD (STICH DIV SALES)"
+	by {u:"MAYANK",P:878888}
+
+purpose of files:
+1."order_planning_calculation_upgrade_Upgrade_func" for single article and shade number. connected to "order_planning_calculation_upgrade_Upgrade_CALLING_func_for_of_input_series"
+2. "order_planning_calculation_upgrade_Upgrade_CALLING_func_for_of_input_series" for multiple article and shade number using "input_series_article_shade_qty.xlsx"
