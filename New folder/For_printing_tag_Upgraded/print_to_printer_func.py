@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+import pandas as pd
 
 
 from PIL import Image, ImageTk, ImageWin
@@ -26,7 +27,7 @@ class PDFViewer:
         self.root = root
         self.path= path
 
-        self.root.title("PDF Viewer")
+        self.root.title("Print Tag")
 
         self.root.geometry("1000x700")
 
@@ -38,6 +39,20 @@ class PDFViewer:
         self.pdf = None
 
         self.page_number = 0
+
+        file_name_Spacing_position_DB = "DB_files/Spacing_position_DB.xlsx"
+        df_Spacing_position_DB = pd.read_excel(file_name_Spacing_position_DB)
+        print(df_Spacing_position_DB.columns)
+        Clarity_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'Clarity'].iloc[0].to_dict()
+        layout_x_times_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'layout_x_times'].iloc[0].to_dict()
+        layout_y_times_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'layout_y_times'].iloc[
+            0].to_dict()
+
+
+
+        self.clarity=Clarity_dict['Value']
+        self.layout_x_times = layout_x_times_dict['Value']
+        self.layout_y_times = layout_y_times_dict['Value']
 
         # Current PIL image
         self.image = None
@@ -525,7 +540,7 @@ class PDFViewer:
         # ==============================================
 
         bitmap = page.render(
-            scale=10
+            scale=self.clarity
         )
 
 
@@ -1158,10 +1173,15 @@ class PDFViewer:
                 self.copies_entry.get()
             )
 
-            tempo_copies=copies/2
+            total_print_par_page=int(self.layout_x_times)*int(self.layout_y_times)
+
+            tempo_copies=copies / total_print_par_page
+            remainder_copies=copies % total_print_par_page
+
             int_copies=int(tempo_copies)
-            if (tempo_copies-int_copies)>0:
+            if remainder_copies>0:
                 int_copies=int_copies+1
+
             copies=int_copies
 
 

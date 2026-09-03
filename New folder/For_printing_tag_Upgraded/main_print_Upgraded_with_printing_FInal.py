@@ -29,6 +29,9 @@ file_name_shade_library_DB = (
     "DB_files/shade_library_DB.xlsx"
 )
 
+file_name_Spacing_position_DB = "DB_files/Spacing_position_DB.xlsx"
+
+
 
 # ============================================================
 # READ EXCEL FILES
@@ -45,6 +48,9 @@ df_Party_logo_name_DB = pd.read_excel(
 df_shade_library_DB = pd.read_excel(
     file_name_shade_library_DB
 )
+
+df_Spacing_position_DB = pd.read_excel(file_name_Spacing_position_DB)
+
 
 
 # ============================================================
@@ -88,6 +94,27 @@ pdf_=None
 image_ = None
 photo_ = None
 print_path_to_pass=None
+##for default
+party=None
+article='1201'  # It is default value. It comes into play when Article print is optional, It is necessary to define as pdf is saved with article and shade number
+shade='30214'   # It is default value. It comes into play when Shade print is optional, It is necessary to define as pdf is saved with article and shade number
+batch_no=None
+date_to_show=None
+
+# ============================================================
+# Dictionary Initiation
+# ============================================================
+
+draw_party_logo_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'draw_party_logo'].iloc[
+    0].to_dict()
+party_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'party_name'].iloc[0].to_dict()
+brand_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'brand_name'].iloc[0].to_dict()
+ART_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'ART_name'].iloc[0].to_dict()
+shade_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'shade'].iloc[0].to_dict()
+batch_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'batch_name'].iloc[0].to_dict()
+llength_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'llength_name'].iloc[0].to_dict()
+date_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'date_name'].iloc[0].to_dict()
+
 # ============================================================
 # MAIN FRAME
 # ============================================================
@@ -440,137 +467,167 @@ form_frame.pack(
 # ============================================================
 # PARTY NAME
 # ============================================================
+if party_name_dict['Active'] == 1 or draw_party_logo_dict['Active']==1:
+    party_label = tk.Label(
+        form_frame,
+        text="Party Name:",
+        width=15,
+        anchor="w"
+    )
 
-party_label = tk.Label(
-    form_frame,
-    text="Party Name:",
-    width=15,
-    anchor="w"
-)
+    party_label.grid(
+        row=0,
+        column=0,
+        padx=(0, 15),
+        pady=10,
+        sticky="nw"
+    )
 
-party_label.grid(
-    row=0,
-    column=0,
-    padx=(0, 15),
-    pady=10,
-    sticky="nw"
-)
+    party_dropdown = create_search_box(
+        form_frame,
+        party_list
+    )
 
-
-party_dropdown = create_search_box(
-    form_frame,
-    party_list
-)
-
-party_dropdown.master.grid(
-    row=0,
-    column=1,
-    padx=0,
-    pady=10,
-    sticky="nw"
-)
-
+    party_dropdown.master.grid(
+        row=0,
+        column=1,
+        padx=0,
+        pady=10,
+        sticky="nw"
+    )
 
 # ============================================================
 # ARTICLE NUMBER
 # ============================================================
 
-article_label = tk.Label(
-    form_frame,
-    text="Article No.:",
-    width=15,
-    anchor="w"
-)
+if ART_name_dict['Active'] == 1:
+    article_label = tk.Label(
+        form_frame,
+        text="Article No.:",
+        width=15,
+        anchor="w"
+    )
 
-article_label.grid(
-    row=1,
-    column=0,
-    padx=(0, 15),
-    pady=10,
-    sticky="nw"
-)
+    article_label.grid(
+        row=1,
+        column=0,
+        padx=(0, 15),
+        pady=10,
+        sticky="nw"
+    )
 
+    article_dropdown = create_search_box(
+        form_frame,
+        article_list
+    )
 
-article_dropdown = create_search_box(
-    form_frame,
-    article_list
-)
-
-article_dropdown.master.grid(
-    row=1,
-    column=1,
-    padx=0,
-    pady=10,
-    sticky="nw"
-)
-
+    article_dropdown.master.grid(
+        row=1,
+        column=1,
+        padx=0,
+        pady=10,
+        sticky="nw"
+    )
 
 # ============================================================
 # SHADE NUMBER
 # ============================================================
+if shade_dict['Active'] == 1:
+    shade_label = tk.Label(
+        form_frame,
+        text="Shade No.:",
+        width=15,
+        anchor="w"
+    )
 
-shade_label = tk.Label(
-    form_frame,
-    text="Shade No.:",
-    width=15,
-    anchor="w"
-)
+    shade_label.grid(
+        row=2,
+        column=0,
+        padx=(0, 15),
+        pady=10,
+        sticky="nw"
+    )
 
-shade_label.grid(
-    row=2,
-    column=0,
-    padx=(0, 15),
-    pady=10,
-    sticky="nw"
-)
+    Shade_dropdown = create_search_box(
+        form_frame,
+        shade_list
+    )
 
+    Shade_dropdown.master.grid(
+        row=2,
+        column=1,
+        padx=0,
+        pady=10,
+        sticky="nw"
+    )
 
-Shade_dropdown = create_search_box(
-    form_frame,
-    shade_list
-)
-
-Shade_dropdown.master.grid(
-    row=2,
-    column=1,
-    padx=0,
-    pady=10,
-    sticky="nw"
-)
 
 
 # ============================================================
 # BATCH NUMBER
 # ============================================================
+if batch_name_dict['Active'] == 1:
+    batch_label = tk.Label(
+        form_frame,
+        text="Batch No.:",
+        width=15,
+        anchor="w"
+    )
 
-batch_label = tk.Label(
-    form_frame,
-    text="Batch No.:",
-    width=15,
-    anchor="w"
-)
+    batch_label.grid(
+        row=3,
+        column=0,
+        padx=(0, 15),
+        pady=10,
+        sticky="w"
+    )
 
-batch_label.grid(
-    row=3,
-    column=0,
-    padx=(0, 15),
-    pady=10,
-    sticky="w"
-)
+    batch_no_entry = tk.Entry(
+        form_frame,
+        width=42
+    )
+
+    batch_no_entry.grid(
+        row=3,
+        column=1,
+        padx=0,
+        pady=10,
+        sticky="w"
+    )
 
 
-batch_no_entry = tk.Entry(
-    form_frame,
-    width=42
-)
+# ============================================================
+# date
+# ============================================================
+if date_name_dict['Active'] == 1:
+    date_label = tk.Label(
+        form_frame,
+        text="Date:",
+        width=15,
+        anchor="w"
+    )
 
-batch_no_entry.grid(
-    row=3,
-    column=1,
-    padx=0,
-    pady=10,
-    sticky="w"
-)
+    date_label.grid(
+        row=4,
+        column=0,
+        padx=(0, 15),
+        pady=10,
+        sticky="w"
+    )
+
+    date_no_entry = tk.Entry(
+        form_frame,
+        width=42
+    )
+
+    date_no_entry.grid(
+        row=4,
+        column=1,
+        padx=0,
+        pady=10,
+        sticky="w"
+    )
+
 
 
 # ==================================================
@@ -664,18 +721,37 @@ def print_cmd():
 
 def submit():
     global print_path_to_pass
+    global party
+    global article
+    global shade
+    global batch_no
+    global date_to_show
 
     # --------------------------------------------------------
     # GET VALUES
     # --------------------------------------------------------
 
-    party = party_dropdown.get()
 
-    article = article_dropdown.get()
+    if party_name_dict['Active'] == 1 or draw_party_logo_dict['Active'] == 1:
+        party = party_dropdown.get()
 
-    shade = Shade_dropdown.get()
+    if ART_name_dict['Active'] == 1:
+        article = article_dropdown.get()
 
-    batch_no = batch_no_entry.get()
+    if shade_dict['Active'] == 1:
+        shade = Shade_dropdown.get()
+
+    if batch_name_dict['Active'] == 1:
+        batch_no = batch_no_entry.get()
+
+    if date_name_dict['Active'] == 1:
+        date_to_show = date_no_entry.get()
+
+
+
+
+
+
 
 
     # --------------------------------------------------------
@@ -689,6 +765,7 @@ def submit():
         and article in article_list
         and shade in shade_list
         and batch_no != ""
+        and date_to_show != ""
     ):
 
         errorr = 0
@@ -782,15 +859,14 @@ def submit():
         # ----------------------------------------------------
         # CALL PRINT FUNCTION
         # ----------------------------------------------------
+        dict_to_call_func={'image_name':image_name,'party_name':party_name,'article_num':article_num,
+                           'llength':llength,'shade':shade,'brand_name':brand_name,
+                           'batch_NO':batch_NO,'date_to_show':date_to_show
+                           }
+
 
         msg_from_func = print_tag_func(
-            image_name,
-            party_name,
-            article_num,
-            llength,
-            shade,
-            brand_name,
-            batch_NO
+            dict_to_call_func
         )
 
 
@@ -867,6 +943,6 @@ result_label.pack(
 # ============================================================
 # START APPLICATION
 # ============================================================
-
+window.bind("<Control-p>", lambda event: print_cmd())
 window.mainloop()
 
