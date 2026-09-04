@@ -633,7 +633,7 @@ class PDFViewer:
         # MARGIN
         # ==================================================
 
-        margin = 2   #changed here from 20
+        margin = 20
 
 
         available_width = (
@@ -1282,7 +1282,6 @@ class PDFViewer:
             # GET OFFSET
             # ==========================================
 
-
             offset_x = (
                 printer.GetDeviceCaps(
                     PHYSICALOFFSETX
@@ -1375,9 +1374,6 @@ class PDFViewer:
             # ==========================================
             # CENTER IN PRINTABLE AREA
             # ==========================================
-            print('offset_x:',offset_x)
-            print('offset_y:', offset_y)
-
 
 
 
@@ -1396,8 +1392,6 @@ class PDFViewer:
             )
 
 
-
-
             y = (
                 offset_y
                 +
@@ -1411,8 +1405,6 @@ class PDFViewer:
                     2
                 )
             )
-
-
 
 
             # ==========================================
@@ -1455,9 +1447,6 @@ class PDFViewer:
                 # --------------------------------------
                 # DRAW IMAGE
                 # --------------------------------------
-
-
-
 
                 dib.draw(
                     printer.GetHandleOutput(),

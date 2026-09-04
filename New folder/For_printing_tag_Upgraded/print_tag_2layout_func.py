@@ -66,7 +66,7 @@ def print_tag_func(dict_to_call_func):
 
     # layout_x_times=2
     # layout_y_times = 1
-    # layout_x_spacing = 1.77 * 72  # 30*45mm
+    # layout_x_spacing = 1.77 * 72  # 30*45mm # 1 inch=72 points
     # layout_y_spacing = 1.18 * 72
 
 
