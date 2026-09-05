@@ -1,15 +1,40 @@
 a) "combined_dry_weight_DB" ->
-1.data_analysis
-2.Dyeing_order_planning_after_stock_calculation_new
-3.RM_data
+1. data_analysis
+2. Dyeing_order_planning_after_stock_calculation_new
+3. (RM)Raw_Material_Purchase_Oder_Planning
+4.(RM)Raw_Material_Purchase_Oder_Planning\GTG_daily_stock_analysis\Item_wise_order_calculation_per_month_in_kg_CONNECTED
+5. Make-up (V-cone)_vs_monthly_order
+
 
 b)"Dyeing_capacity_DB"      -> 
-1.Dyeing_lead_time_order_vs_despatch_report
+1. Dyeing_lead_time_order_vs_despatch_report
+
 
 c)""4 August -Expanded capacity calculation_DB""  ->
-1. Winding_lead_time_pending_vs_stock
+1.  Winding_lead_time_pending_vs_stock
 
 
 d)"party_list_DB"  ->
 1. challan k liye
-                       
+
+
+e)""purchase_order_lead_time_DB.xlsx""->
+1. (RM)Raw_Material_Purchase_Oder_Planning
+
+
+f)"GTG_Item_type_converion_DB"->
+1. GTG_daily_stock_analysis\To_convert_GTG_ITEM_NAME_to_match_our_ITEM_NAME
+
+
+g)""4 August -Expanded capacity calculation_DB""
+1. Winding_lead_time_pending_vs_stock
+2. Make-up (V-cone)_vs_monthly_order
+
+h)"Dyed_soft_package_Item_type_conversion_DB"
+1. Dyeing_order_planning_after_stock_calculation_new\To_convert_after_dyeing_ITEM_NAME_to_match_our_ITEM_NAME
+
+
+
+
+
+                     

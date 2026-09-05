@@ -1,5 +1,5 @@
 Daily update:
-1. "ProductionPlanning.xlsx" 
+1. "ProductionPlanning" 
 
 
 Run file:
@@ -8,8 +8,9 @@ Run file:
 DB files:
 1."4 August -Expanded capacity calculation_DB"
 
-Download files:
-1. "ProductionPlanning.xlsx" :from PDMS website> sales and order management> pending OrderVSStock 
+Download:
+1. "ProductionPlanning"  from liveware(192.) website->"Sales & Order Management"->"
+Pending Order vs Stock Report"
 
 
 

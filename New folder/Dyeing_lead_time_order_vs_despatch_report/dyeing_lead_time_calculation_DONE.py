@@ -63,8 +63,10 @@ df_daily_dyeing_order_to_despatch_report = df_daily_dyeing_order_to_despatch_rep
 ##FILTER 1 Dont allow "Status" as "Close"
 
 ##FILTER 2 allow Despatch date NaN
+# df_daily_dyeing_order_to_despatch_report = df_daily_dyeing_order_to_despatch_report[
+#     df_daily_dyeing_order_to_despatch_report['Dsp. Dt'].isna()]
 df_daily_dyeing_order_to_despatch_report = df_daily_dyeing_order_to_despatch_report[
-    df_daily_dyeing_order_to_despatch_report['Dsp. Dt'].isna()]
+    df_daily_dyeing_order_to_despatch_report['Dyg Date'].isna()]    ####changed from Dsp. Dt
 # print(df_daily_dyeing_order_to_despatch_report['Dsp. Dt'].head(60))
 # print(df_daily_dyeing_order_to_despatch_report.columns)
 ##FILTER 2 allow Despatch date NaN

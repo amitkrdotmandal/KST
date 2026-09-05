@@ -63,8 +63,10 @@ df_daily_dyeing_order_to_despatch_report = df_daily_dyeing_order_to_despatch_rep
 ##FILTER 1 Dont allow "Status" as "Close"
 
 ##FILTER 2 allow Despatch date NaN
+# df_daily_dyeing_order_to_despatch_report = df_daily_dyeing_order_to_despatch_report[
+#     df_daily_dyeing_order_to_despatch_report['Dsp. Dt'].isna()]
 df_daily_dyeing_order_to_despatch_report = df_daily_dyeing_order_to_despatch_report[
-    df_daily_dyeing_order_to_despatch_report['Dsp. Dt'].isna()]
+    df_daily_dyeing_order_to_despatch_report['Dyg Date'].isna()]    ####changed from Dsp. Dt
 # print(df_daily_dyeing_order_to_despatch_report['Dsp. Dt'].head(60))
 # print(df_daily_dyeing_order_to_despatch_report.columns)
 ##FILTER 2 allow Despatch date NaN
@@ -142,7 +144,7 @@ print(result_of_main)
 ####File_to_save_delete_before
 date_str = datetime.now().strftime("%d-%m-%Y")
 # file_name_to_save_all_data="temporary_output_Winding_lead_time_of_"+date_str+".xlsx"
-file_name_to_save_all_data="temporary_output_dyeing_lead_time_of_"+".xlsx"
+file_name_to_save_all_data="Output_dyeing_lead_time"+".xlsx"
 print(file_name_to_save_all_data)
 if os.path.isfile(file_name_to_save_all_data):
     os.remove(file_name_to_save_all_data)

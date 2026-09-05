@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
-from search_by_raw_material_name_function import search_by_raw_material_name_function
+# from search_by_raw_material_name_function import search_by_raw_material_name_function
 import math
 import os
 from datetime import datetime
@@ -16,7 +16,7 @@ print(df_GTG_RAW.head())
 len_of_data_RAW = len(df_GTG_RAW)
 for i in range(len_of_data_RAW):
     vaaro = df_GTG_RAW['Item type according to me'][i]
-    list_first_digit_count=['POLY POLY CORE SPUN','SPUN POLYESTER YARN']##### may need to change
+    list_first_digit_count=['POLY POLY CORE SPUN','SPUN POLYESTER YARN','TEXTURISED POLYESTER']##### may need to change
     if vaaro not in list_first_digit_count:
         item_string = df_GTG_RAW['Item Name according to GTG'][i]
         extract_ct_tem = re.search(r'^\s*(?:D\s*)?(\d+)/', item_string)
