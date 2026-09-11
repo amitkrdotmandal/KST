@@ -5,6 +5,7 @@ import re
 import math
 import os
 from datetime import datetime
+from datetime import timedelta
 from customer_analysis_from_order_history_func import customer_analysis_from_order_history_func
 
 file_name_pendingordertoplan = "pendingordertoplan.xlsx"
@@ -26,6 +27,7 @@ def get_series(Qty):
         return match.iloc[0]['Series_name']
     else:
         return None
+
 
 def get_series_p(Qty):
     match = df_Dyeing_capacity_DB[
@@ -53,6 +55,7 @@ def get_DV_number(s_name):
     else:
         return None
 
+
 def get_no_of_pkg_in_DV(s_name):
     match = df_Dyeing_capacity_DB[df_Dyeing_capacity_DB['Series_name'] == s_name]
     if not match.empty:
@@ -66,6 +69,14 @@ def get_item_for_me_for_streaching_or_winding_or_pending(item):
         df_DB_of_converted_item_name['Item Name  aacording to dyeing'].astype(str) == item]
     if not match.empty:
         return (match.iloc[0]['Item Name according to me'])
+    else:
+        return None
+
+
+def dyeing_can_be_done_in_KG(row):
+    now = datetime.now()
+    if (row['Total_Frequency']>1) and (row['Total_Frequency']>1) and (row['Last_date_of_Odr']>(now - timedelta(days=30))) and (row['Avg_wt_in_KG_per_month']>row['Bal PlanQty']):
+        return row['Avg_wt_in_KG_per_month']
     else:
         return None
 
@@ -191,6 +202,14 @@ df_pendingordertoplan['Avg_Qty_per_month']=df_pendingordertoplan['actual_tot_in_
 df_pendingordertoplan['Avg_wt_in_KG_per_month']=df_pendingordertoplan['actual_tot_wt_in_KG']/(max_date-start_day).days*30
 df_pendingordertoplan['Avg_Frequency_per_month']=df_pendingordertoplan['Total_Frequency']/(max_date-start_day).days*30
 
+df_pendingordertoplan['Dyeing_can_be_done_in_KG'] = df_pendingordertoplan.apply(dyeing_can_be_done_in_KG, axis=1)
+
+
+
+
+
+
+
 
 
 
@@ -275,7 +294,9 @@ with pd.ExcelWriter('Output_files/Output_item_wise_sheet_vs_Article_Shade_Pend_O
         #======================================================================
         #See repetation ends
         #======================================================================
+
         filtered_df.drop(columns=['Party Name.', 'actual_tot_in_Qty', 'actual_tot_wt_in_KG','Parties','Avg_Qty_per_month','Series_name'], inplace=True)
+        filtered_df = filtered_df.rename(columns={'Last_date_of_Odr': 'Last_date_of_customer_odr'})
 
         filtered_df = filtered_df.sort_values(by='Shade Name', ascending=True).reset_index(drop=True)
         item = item.replace('/', ' by ')
