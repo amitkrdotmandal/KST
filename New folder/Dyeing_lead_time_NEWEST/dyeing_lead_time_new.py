@@ -75,7 +75,7 @@ def get_item_for_me_for_streaching_or_winding_or_pending(item):
 
 def dyeing_can_be_done_in_KG(row):
     now = datetime.now()
-    if (row['Total_Frequency']>1) and (row['Total_Frequency']>1) and (row['Last_date_of_Odr']>(now - timedelta(days=30))) and (row['Avg_wt_in_KG_per_month']>row['Bal PlanQty']):
+    if (row['Total_Frequency']>1) and (row['No_of_parties']>1) and (row['Last_date_of_Odr']>(now - timedelta(days=90))) and (row['Avg_wt_in_KG_per_month']>row['Bal PlanQty']):
         return row['Avg_wt_in_KG_per_month']
     else:
         return None
@@ -212,7 +212,8 @@ df_pendingordertoplan['Dyeing_can_be_done_in_KG'] = df_pendingordertoplan.apply(
 
 
 
-
+####Calculation for dyeing_lead_time_new Starts
+####Calculation for dyeing_lead_time_new Starts
 result_of_main = df_pendingordertoplan.groupby('Series_name').size().reset_index(
     name='lot_Count_to_produce')
 result_of_main['DV number'] = result_of_main['Series_name'].apply(get_DV_number)
@@ -234,9 +235,9 @@ result_of_main.insert(0, 'DV number', col_tem)
 
 col_tem = result_of_main.pop('No_of_PKG_in_DV')
 result_of_main.insert(1, 'No_of_PKG_in_DV', col_tem)
-
 print(result_of_main)
-
+####Calculation for dyeing_lead_time_new Ends
+####Calculation for dyeing_lead_time_new Ends
 
 
 
@@ -249,7 +250,7 @@ df_pendingordertoplan.to_excel('Output_files/Output_all_together_Pend_Odr_Pln.xl
 ####For saving Output_dyeing_lead_time_new starts
 date_str = datetime.now().strftime("%d-%m-%Y")
 # file_name_to_save_all_data="temporary_output_Winding_lead_time_of_"+date_str+".xlsx"
-file_name_to_save_all_data="Output_files/Output_dyeing_lead_time_new_Pend_Odr_Pln"+".xlsx"
+file_name_to_save_all_data="Output_files/Output_dyeing_lead_time_new_For_Report"+".xlsx"
 print(file_name_to_save_all_data)
 if os.path.isfile(file_name_to_save_all_data):
     os.remove(file_name_to_save_all_data)
@@ -280,7 +281,7 @@ with pd.ExcelWriter(file_name_to_save_all_data) as Writter:
 item_list = df_pendingordertoplan['Item Name'].astype(str).unique().tolist()
 
 print(item_list)
-with pd.ExcelWriter('Output_files/Output_item_wise_sheet_vs_Article_Shade_Pend_Odr_Pln.xlsx') as Writter:
+with pd.ExcelWriter('Output_files/Output_item_wise_sheet_vs_Article_Shade_For_Report.xlsx') as Writter:
     for item in item_list:
         filtered_df = df_pendingordertoplan[
             df_pendingordertoplan['Item Name']==item]

@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 from datetime import datetime
+from datetime import timedelta
 import re
 
 
@@ -32,8 +33,17 @@ def customer_analysis_from_order_history_func(start_day,parties_to_be_analysed):
     df_OrderHistory = pd.merge(df_OrderHistory, df_combined_dry_weight_DB, on='Article', how='left')
     df_OrderHistory['actual_tot_wt_in_KG'] = df_OrderHistory['Actual order'] * df_OrderHistory[
         'Dry weight(gram)'] / 1000
-    start_day = datetime.strptime(start_day, '%d/%m/%Y')
-    max_date = df_OrderHistory['Order Date'].max()
+
+
+    # start_day = datetime.strptime(start_day, '%d/%m/%Y')
+    # max_date = df_OrderHistory['Order Date'].max()
+
+
+    max_date = datetime.now()
+    start_day = max_date - timedelta(days=150)
+
+
+
     df_OrderHistory_date_filtered = df_OrderHistory[
         (df_OrderHistory['Order Date'] >= start_day) &
         (df_OrderHistory['Order Date'] <= max_date)

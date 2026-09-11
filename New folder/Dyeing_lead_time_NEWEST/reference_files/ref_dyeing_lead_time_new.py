@@ -75,7 +75,7 @@ def get_item_for_me_for_streaching_or_winding_or_pending(item):
 
 def dyeing_can_be_done_in_KG(row):
     now = datetime.now()
-    if (row['Total_Frequency']>1) and (row['Total_Frequency']>1) and (row['Last_date_of_Odr']>(now - timedelta(days=90))) and (row['Avg_wt_in_KG_per_month']>row['Bal PlanQty']):
+    if (row['Total_Frequency']>1) and (row['No_of_parties']>1) and (row['Last_date_of_Odr']>(now - timedelta(days=90))) and (row['Avg_wt_in_KG_per_month']>row['Bal PlanQty']):
         return row['Avg_wt_in_KG_per_month']
     else:
         return None
