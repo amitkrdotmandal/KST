@@ -1,0 +1,27 @@
+function createStockSheet(sheet_name) {
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Get existing sheet
+  var sheet = ss.getSheetByName(sheet_name);
+
+  // Create if it doesn't exist
+  if (sheet == null) {
+    sheet = ss.insertSheet(sheet_name);
+  }
+  
+
+  // Create formula
+  var formula = '=GOOGLEFINANCE("NSE:' + sheet_name + '","all",TODAY()-(365*4),TODAY())';
+
+  // Put formula into A1
+  sheet.getRange("A1").setValue(formula);
+
+  // Check what was actually inserted
+  Logger.log("Formula: " + formula);
+  Logger.log("A1 formula: " + sheet.getRange("A1").getFormula());
+}
+
+function mainFunction() {
+  createStockSheet("LT");
+}

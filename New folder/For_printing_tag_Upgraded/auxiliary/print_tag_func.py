@@ -1,0 +1,90 @@
+from cmath import nan
+
+from reportlab.pdfgen import canvas
+from reportlab.lib.utils import ImageReader
+import pandas as pd
+
+def print_tag_func(image_name,party_name,article_num,llength,shade,brand_name,batch_NO):
+    # image_name = "2.jpeg"
+    # party_name = "ZIGMA"
+    # article_num = 1201
+    # llength = 1500
+    # shade = "S1005"
+    # brand_name = 'ROX gold'
+    # batch_NO = 'DS00012'
+
+    file_name_Spacing_position_DB = "DB_files/Spacing_position_DB.xlsx"
+    df_Spacing_position_DB = pd.read_excel(file_name_Spacing_position_DB)
+    print(df_Spacing_position_DB.columns)
+    # print(df_Spacing_position_DB.head())
+
+    ART_name = "ART: " + str(article_num)
+    llength_name = str(llength) + ' MTR'
+    batch_name = "Batch No.: " + batch_NO
+    image = ImageReader("logos/" + image_name)
+
+    width = 1.77 * 72  # 30*45mm
+    height = 1.18 * 72
+    file_name_to_save = 'Output_files/'+str(article_num) + '_' + str(shade) + '_' + party_name + '_tag.pdf'
+
+
+
+
+
+    pdf = canvas.Canvas(file_name_to_save, pagesize=(width, height))
+
+    pdf.drawImage(
+        image,
+        1,  # x position
+        55,  # y position
+        width=30,  # image width
+        height=30  # image height
+    )
+
+    party_name_dict=df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'party_name'].iloc[0].to_dict()
+    brand_name_dict=df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'brand_name'].iloc[0].to_dict()
+    ART_name_dict=df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'ART_name'].iloc[0].to_dict()
+    shade_dict=df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'shade'].iloc[0].to_dict()
+    batch_name_dict=df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'batch_name'].iloc[0].to_dict()
+    llength_name_dict = df_Spacing_position_DB[df_Spacing_position_DB['Field_name'] == 'llength_name'].iloc[0].to_dict()
+
+    pdf.setFont("Helvetica-Bold", party_name_dict['Size'])
+    pdf.drawString(party_name_dict['x_position'], party_name_dict['y_position'], party_name)
+    pdf.setFont("Helvetica-Bold", brand_name_dict['Size'])
+    pdf.drawString(brand_name_dict['x_position'], brand_name_dict['y_position'], brand_name)
+    pdf.setFont("Helvetica-Bold", ART_name_dict['Size'])
+    pdf.drawString(ART_name_dict['x_position'], ART_name_dict['y_position'], ART_name)
+    pdf.setFont("Helvetica-Bold", shade_dict['Size'])
+    pdf.drawString(shade_dict['x_position'], shade_dict['y_position'], shade)
+    pdf.setFont("Helvetica-Bold", batch_name_dict['Size'])
+    pdf.drawString(batch_name_dict['x_position'],batch_name_dict['y_position'], batch_name)
+    pdf.setFont("Helvetica-Bold", llength_name_dict['Size'])
+    pdf.drawString(llength_name_dict['x_position'], llength_name_dict['y_position'], llength_name)
+
+
+
+
+    # pdf.setFont("Helvetica-Bold", 15)
+    # pdf.drawString(45, 70, party_name)
+    # pdf.setFont("Helvetica-Bold", 12)
+    # pdf.drawString(40, 58, brand_name)
+    # pdf.setFont("Helvetica-Bold", 8)
+    # pdf.drawString(42, 48, ART_name)
+    # pdf.setFont("Helvetica-Bold", 15)
+    # pdf.drawString(30, 30, shade)
+    # pdf.setFont("Helvetica-Bold", 8)
+    # pdf.drawString(30, 20, batch_name)
+    # pdf.setFont("Helvetica-Bold", 8)
+    # pdf.drawString(45, 5, llength_name)
+    pdf.save()
+    return file_name_to_save
+
+
+# image_name = "3.jpeg"
+# party_name = "ZIGMA"
+# article_num = 1205
+# llength = 1500
+# shade = "S1005"
+# brand_name = 'ROX gold'
+# batch_NO = 'DS00012'
+# print_tag_func(image_name,party_name,article_num,llength,shade,brand_name,batch_NO)
